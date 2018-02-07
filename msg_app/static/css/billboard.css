@@ -1,0 +1,104 @@
+body {
+    margin: 4px;
+  }
+
+.title{
+    color: black;
+    font-family: 'Anton', sans-serif;
+    font-size: 40px;
+    margin-top: 2%;
+    margin-bottom: 4%;
+    text-align: center;
+}
+
+.msg_box{
+    border: 3px solid #00b7ef ;
+    max-width: 800px;
+    padding: 20px;
+    margin: 5px auto 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.msg_date{
+    background-color: white;
+    padding: 5px;
+    margin-left: 20px;
+    margin-top: -37px;
+    position: absolute;
+    font-family: 'Poiret One', cursive;
+}
+
+.msg_title{
+    font-family: 'Anton', sans-serif;
+    font-size: 30px;
+    color: #00b7ef;
+    margin: 5px 19px;
+}
+
+.msg{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #c1bfc0;
+    margin: 25px 20px 50px;  
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.sign{
+    font-family: 'Pinyon Script', cursive;
+    font-size: 24px;
+    color: black;
+    position: absolute;
+    right: 20px;
+    bottom: 23px;
+}
+
+.add_msg{
+    border: 1px dashed #000000 ;
+    max-width: 800px;
+    padding: 10px;
+    margin: 5px auto 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plus{
+    background-color: #66CDAA;
+    color: white;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 85px;
+    height: 30px;
+}
+
+.logbox{
+    margin: auto;
+    width: 300px;
+    height: 200px;
+}
+
+.btn{
+    margin: 10px;
+}
+
+h3{
+    text-align: center;
+    font-family: Anton;
+}
+
+.logreg{
+    display: flex;
+    justify-content: center;
+}
+
+#new_msg{
+    display: none;
+}
