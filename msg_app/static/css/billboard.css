@@ -110,3 +110,18 @@ h3{
     top: 16px;
     right: 30px;
 }
+
+.trash{
+    position: absolute;
+    right: 17px;
+    width: 20px;
+    font-size: 18px;
+    color: red;
+    opacity: 0.4;
+    transition: opacity 0.5s linear;
+}
+
+.trash:hover{
+    opacity: 1;
+}
+

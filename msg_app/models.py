@@ -7,7 +7,7 @@ from datetime import date
 # Create your models here.
 @python_2_unicode_compatible
 class Messages(models.Model):
-    msg_date = models.DateField(("Date"), auto_now_add=True)
+    msg_date = models.DateField(("Date"), auto_now_add=True,)
     msg_title = models.CharField(max_length=200)
     msg = models.CharField(max_length=2000)
     msg_author = models.CharField(max_length=50)

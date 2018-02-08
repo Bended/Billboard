@@ -60,12 +60,15 @@ def messages(request):
         return redirect('home')
 
 def new_msg(request):
-    print request.POST
     title = request.POST['title']
-    message = request.POST['messages']
+    message = request.POST['message']
     author = request.user
-    new_message = Messages(msg_title = title, msg = message, msg_author = author)
-    return render(request, 'messages.html')
+    if title is not "" or message is not "":
+        new_message = Messages(msg_title = title, msg = message, msg_author = author)
+        new_message.save()
+        return redirect('messages')
+    else:
+        return redirect('messages')
 
 
 

@@ -7,19 +7,17 @@
 </form>
 
 {% for message in all_messages %}
-
     <div class="msg_box">
+        <span class="trash"><i class="far fa-trash-alt"></i></span>
         <span class="msg_date">{{ message.msg_date}}</span>
         <div class="msg_title">{{message.msg_title}}</div>
         <div class="msg">{{message.msg}}</div>
         <div class="sign">{{message.msg_author}}</div>
     </div>
-
 {% endfor %}
 
 <div class="msg_box" id="new_msg">
-    <form method="post"  role="form" action="{% url 'new_msg' %}">
-  {% csrf_token %}
+    <form name="new_message" method="post"  role="form" action="{% url 'new_msg' %}">{% csrf_token %}
       <div class="form-group">
         <span class="msg_date">{{ time }}</span>
         <label for="new_title">Title</label>
@@ -31,8 +29,12 @@
       </div>
       <div class="sign">{{ request.user }}</div>
     <div class="logreg">
-        <input type="submit" class="btn btn-success" id="validate" style="background-color:#66CDAA">
-        {% comment %} <input type="submit" class="btn btn-danger" id="cancel" value="Cancel"> {% endcomment %}
+        <button type="submit" class="btn btn-success" id="validate" style="background-color:#66CDAA; width:70px">
+            <i class="fas fa-check"></i>
+        </button>
+        <button class="btn btn-danger" id="cancel" style="width:70px" type=button>
+            <i class="fas fa-times"></i>
+        </button>
     </div>
   </form>
 </div>
