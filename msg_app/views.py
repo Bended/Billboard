@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 from django.contrib import admin
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 from .models import Messages
 from django.views.generic import View
 from .forms import UserForm
@@ -15,40 +16,68 @@ admin.site.register(Messages)
 def home(request):
     return render(request, 'home.html')
 
-def login(request):
-    return render(request, 'login.html')
+def dispLogin(request):
+    return render(request, 'login.html')    
 
-def register(request):
-    return render(request, 'register.html')
-
-# when user connected
-def messages(request):
-    all_messages = Messages.objects.all()
-    context = {
-        'all_messages' : all_messages,
-        'time':datetime.now(),
-        'currentUser': 'Ben',
-    }
-    return render(request, 'messages.html', context)
-
-#def new_msg():
-
-
-# check user credential
-def bla(request):
+@csrf_protect
+def login_user(request):
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(username=username, password=password)
     if user is not None:
-        if user.is_active:
-            login(request, user)
-            messages()
-        else:       
-            # Return a 'disabled account' error message
-            return "disable account"
+        login(request, user)
+        return redirect ('messages')
+    return redirect ('dispLogin')
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('home')
+
+def register(request):
+    username = request.POST['username']
+    email = request.POST['email']
+    password = request.POST['password']
+    User.objects.create_user(username = username, email = email, password = password)
+    user = authenticate(username=username, password=password)
+    login(request, user)
+    return redirect('messages')
+
+def register_displ(request):
+    return render(request, 'register.html')
+
+# when user connected
+def messages(request):
+    user=request.user
+    if user.is_authenticated():
+        all_messages = Messages.objects.all()
+        context = {
+            'all_messages' : all_messages,
+            'time':datetime.now(),
+        }
+        return render(request, 'messages.html', context)
     else:
-        # Return an 'invalid login' error message.
-        return "invalide credential"
+        return redirect('home')
+
+def new_msg(request):
+    print request.POST
+    title = request.POST['title']
+    message = request.POST['messages']
+    author = request.user
+    new_message = Messages(msg_title = title, msg = message, msg_author = author)
+    return render(request, 'messages.html')
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -101,4 +101,12 @@ h3{
 
 #new_msg{
     display: none;
+    border: 1px dashed #00b7ef;
+
+}
+
+#logout{
+    position: absolute;
+    top: 16px;
+    right: 30px;
 }

@@ -1,11 +1,15 @@
 from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
-    url(r'^login/', views.login, name='login'),
+    
+    url(r'^displogin', views.dispLogin, name='dispLogin'),
+    url(r'^login_user/', views.login_user, name='login_user'),
+    url(r'^register_displ/', views.register_displ, name='register_displ'),
     url(r'^register/', views.register, name='register'),
     url(r'^messages/', views.messages, name='messages'),
-
-   # url(r'^new_msg/', views.MessageForm, name='new_msg'),
+    url(r'^logout/', views.logout_user, name='logout_user'),
+    url(r'^$', views.home, name='home'),
+    url(r'^new_msg', views.new_msg, name='new_msg'),
 ]

@@ -2,10 +2,14 @@
 
 {% block body %}
 
+<form name="logout_user" method="post"  role="form" action="{% url 'logout_user' %}">{% csrf_token %}
+    <input name="logout" type="submit" class="btn btn-default" id="logout" value="Logout">
+</form>
+
 {% for message in all_messages %}
 
     <div class="msg_box">
-        <span class="msg_date">{{message.msg_date}}</span>
+        <span class="msg_date">{{ message.msg_date}}</span>
         <div class="msg_title">{{message.msg_title}}</div>
         <div class="msg">{{message.msg}}</div>
         <div class="sign">{{message.msg_author}}</div>
@@ -14,27 +18,27 @@
 {% endfor %}
 
 <div class="msg_box" id="new_msg">
-    <form method="post"  role="form" action="/new_msg/">
+    <form method="post"  role="form" action="{% url 'new_msg' %}">
   {% csrf_token %}
       <div class="form-group">
         <span class="msg_date">{{ time }}</span>
         <label for="new_title">Title</label>
-        <input type="text" class="form-control" id="title" placeholder="Title" value="{{ new_title }}">
+        <input name="title" type="text" class="form-control" id="title" placeholder="Title" value="{{ new_title }}">
       </div>
       <div class="form-group">
             <label for="new_message">Title</label>
-            <textarea class="form-control" id="message" rows="3" placeholder='Your messages' value="{{ new_message }}"></textarea>
+            <textarea name="message" class="form-control" id="message" rows="3" placeholder='Your messages' value="{{ new_message }}"></textarea>
       </div>
-      <div class="sign">{{ currentUser }}</div>
+      <div class="sign">{{ request.user }}</div>
     <div class="logreg">
-      <input type="submit" class="btn btn-success" id="validate" style="background-color:#66CDAA"></button>
-      <input type="submit" class="btn btn-danger" id="cancel"></button>
+        <input type="submit" class="btn btn-success" id="validate" style="background-color:#66CDAA">
+        {% comment %} <input type="submit" class="btn btn-danger" id="cancel" value="Cancel"> {% endcomment %}
     </div>
   </form>
 </div>
 
     <div class="add_msg">
-        <button class="plus" id="plus_id"><i class="fas fa-plus"></i></button>
+        <button name="new_message" class="plus" id="plus_id"><i class="fas fa-plus"></i></button>
     </div>
 
 {% endblock %}
