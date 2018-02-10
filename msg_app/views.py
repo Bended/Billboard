@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .models import Messages
 from django.views.generic import View
 from .forms import UserForm
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.contrib.auth.models import User
 from datetime import datetime
 admin.site.register(Messages)
@@ -70,6 +70,11 @@ def new_msg(request):
     else:
         return redirect('messages')
 
+@csrf_exempt
+def trash(request):
+    pk = request.DELETE[msg_id]
+    Messages.objects.get(pk = pk).delete()
+    return HttpResponse()
 
 
 

@@ -11,5 +11,6 @@ urlpatterns = [
     url(r'^messages/', views.messages, name='messages'),
     url(r'^logout/', views.logout_user, name='logout_user'),
     url(r'^new_msg/', views.new_msg, name='new_msg'),
+    url(r'^trash/', views.trash, name='trash'),
     url(r'^$', views.home, name='home'),
 ]
