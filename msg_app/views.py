@@ -59,7 +59,6 @@ def messages(request):
     else:
         return redirect('home')
 
-@csrf_protect
 def new_msg(request):
     title = request.POST['title']
     message = request.POST['message']
