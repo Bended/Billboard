@@ -59,6 +59,7 @@ def messages(request):
     else:
         return redirect('home')
 
+@csrf_protect
 def new_msg(request):
     title = request.POST['title']
     message = request.POST['message']
@@ -72,9 +73,10 @@ def new_msg(request):
 
 @csrf_exempt
 def trash(request):
-    pk = request.DELETE[msg_id]
-    Messages.objects.get(pk = pk).delete()
-    return HttpResponse()
+    pkn = request.POST.get("msg_id")
+    to_delete = Messages.objects.get(pk = pkn)
+    to_delete.delete()
+    return HttpResponse("success")
 
 
 

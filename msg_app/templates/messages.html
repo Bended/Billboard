@@ -8,7 +8,8 @@
 
 {% for message in all_messages %}
     <div class="msg_box">
-        <span class="trash" id="{{message.id}}"><i class="far fa-trash-alt"></i></span>{% csrf_token %}
+            {% csrf_token %}
+        <span class="trash" id="{{message.id}}"><i class="far fa-trash-alt"></i></span>
         <span class="msg_date">{{ message.msg_date}}</span>
         <div class="msg_title">{{message.msg_title}}</div>
         <div class="msg">{{message.msg}}</div>
@@ -16,8 +17,9 @@
     </div>
 {% endfor %}
 
+
 <div class="msg_box" id="new_msg">
-    <form name="new_message" method="post"  role="form" action="{% url 'new_msg' %}">
+    <form name="new_message" method="post"  role="form" action="{% url 'new_msg' %}">{% csrf_token %}
       <div class="form-group">
         <span class="msg_date">{{ time }}</span>
         <label for="new_title">Title</label>

@@ -20,8 +20,8 @@ $( document ).ready(function() {
         console.log (msg_id);
         $(this).parent('.msg_box').remove();
         $.ajax({
-            url: 'trash',
-            type: 'DELETE',
+            url: '/billboard/trash/',
+            type: 'POST',
             data: {msg_id : msg_id},
             success: function(result) {
                 alert("Message deleted !")
